@@ -1,4 +1,4 @@
-This is mpfr.info, produced by makeinfo version 6.7 from mpfr.texi.
+This is mpfr.info, produced by makeinfo version 7.1.1 from mpfr.texi.
 
 This manual documents how to install and use the Multiple Precision
 Floating-Point Reliable Library, version 4.1.0.
@@ -230,7 +230,7 @@ details are provided in the ‘INSTALL’ file):
      passed the ‘--prefix’ option to ‘configure’, using the prefix
      directory given as argument to ‘--prefix’ instead of ‘/usr/local’).
 
-2.2 Other ‘make’ Targets
+2.2 Other 'make' Targets
 ========================
 
 There are some other useful make targets:
@@ -277,7 +277,7 @@ There are some other useful make targets:
 ==================
 
 In case of problem, please read the ‘INSTALL’ file carefully before
-reporting a bug, in particular section “In case of problem”.  Some
+reporting a bug, in particular section "In case of problem".  Some
 problems are due to bad configuration on the user side (not specific to
 MPFR).  Problems are also mentioned in the FAQ
 <https://www.mpfr.org/faq.html>.
@@ -627,7 +627,7 @@ File: mpfr.info,  Node: Floating-Point Values on Special Numbers,  Next: Excepti
 ============================================
 
 This section specifies the floating-point values (of type ‘mpfr_t’)
-returned by MPFR functions (where by “returned” we mean here the
+returned by MPFR functions (where by "returned" we mean here the
 modified value of the destination object, which should not be mixed with
 the ternary return value of type ‘int’ of those functions).  For
 functions returning several values (like ‘mpfr_sin_cos’), the rules
@@ -689,7 +689,7 @@ File: mpfr.info,  Node: Exceptions,  Next: Memory Handling,  Prev: Floating-Poin
 MPFR defines a global (or per-thread) flag for each supported exception.
 A macro evaluating to a power of two is associated with each flag and
 exception, in order to be able to specify a group of flags (or a mask)
-by OR’ing such macros.
+by OR'ing such macros.
 
    Flags can be cleared (lowered), set (raised), and tested by functions
 described in *note Exception Related Functions::.
@@ -843,7 +843,7 @@ Here are a few hints to get the best efficiency out of MPFR:
    • avoid using MPFR from C++, or make sure your C++ interface does not
      perform unnecessary allocations or copies;
 
-   • MPFR functions work in-place: to compute ‘a = a + b’ you don’t need
+   • MPFR functions work in-place: to compute ‘a = a + b’ you don't need
      an auxiliary variable, you can directly write ‘mpfr_add (a, a, b,
      ...)’.
 
@@ -865,7 +865,7 @@ of the assigned variable; the cost of that computation should not depend
 on the precision of variables used as input (on average).
 
    The semantics of a calculation in MPFR is specified as follows:
-Compute the requested operation exactly (with “infinite accuracy”), and
+Compute the requested operation exactly (with "infinite accuracy"), and
 round the result to the precision of the destination variable, with the
 given rounding mode.  The MPFR floating-point functions are intended to
 be a smooth extension of the IEEE 754 arithmetic.  The results obtained
@@ -1389,7 +1389,7 @@ File: mpfr.info,  Node: Conversion Functions,  Next: Arithmetic Functions,  Prev
      to 62, digits, upper-case letters, and lower-case letters, in that
      significance order, are used.  Warning!  This implies that for BASE
      > 10, the successor of the digit 9 depends on BASE.  This choice
-     has been done for compatibility with GMP’s ‘mpf_get_str’ function.
+     has been done for compatibility with GMP's ‘mpf_get_str’ function.
      Users who wish a more consistent behavior should write a simple
      wrapper.
 
@@ -1803,7 +1803,7 @@ usage of ‘mpfr_rootn_ui’ is also linear in the argument K, and the
 memory usage of the incomplete Gamma function also depends on the
 precision of the input OP.  It is also theoretically possible that some
 functions on some particular inputs might be very hard to round (i.e.
-the Table Maker’s Dilemma occurs in much larger precisions than normally
+the Table Maker's Dilemma occurs in much larger precisions than normally
 expected from the context), meaning that the internal precision needs to
 be increased even more; but it is conjectured that the needed precision
 has a reasonable bound.
@@ -1973,7 +1973,7 @@ has a reasonable bound.
 
  -- Function: int mpfr_eint (mpfr_t ROP, mpfr_t OP, mpfr_rnd_t RND)
      Set ROP to the exponential integral of OP, rounded in the direction
-     RND.  This is the sum of Euler’s constant, of the logarithm of the
+     RND.  This is the sum of Euler's constant, of the logarithm of the
      absolute value of OP, and of the sum for k from 1 to infinity of OP
      to the power k, divided by k and factorial(k).  For positive OP, it
      corresponds to the Ei function at OP (see formula 5.1.10 from the
@@ -2083,8 +2083,8 @@ has a reasonable bound.
  -- Function: int mpfr_const_pi (mpfr_t ROP, mpfr_rnd_t RND)
  -- Function: int mpfr_const_euler (mpfr_t ROP, mpfr_rnd_t RND)
  -- Function: int mpfr_const_catalan (mpfr_t ROP, mpfr_rnd_t RND)
-     Set ROP to the logarithm of 2, the value of Pi, of Euler’s constant
-     0.577..., of Catalan’s constant 0.915..., respectively, rounded in
+     Set ROP to the logarithm of 2, the value of Pi, of Euler's constant
+     0.577..., of Catalan's constant 0.915..., respectively, rounded in
      the direction RND.  These functions cache the computed values to
      avoid other calculations if a lower or equal precision is
      requested.  To free these caches, use ‘mpfr_free_cache’ or
@@ -2563,7 +2563,7 @@ File: mpfr.info,  Node: Rounding-Related Functions,  Next: Miscellaneous Functio
      X is changed to PREC.
 
      Here is an example of how to use ‘mpfr_prec_round’ to implement
-     Newton’s algorithm to compute the inverse of A, assuming X is
+     Newton's algorithm to compute the inverse of A, assuming X is
      already an approximation to N bits:
             mpfr_set_prec (t, 2 * n);
             mpfr_set (t, a, MPFR_RNDN);         /* round a to 2n bits */
@@ -2891,7 +2891,7 @@ File: mpfr.info,  Node: Exception Related Functions,  Next: Memory Handling Func
      accepted by the implementation (in that case the smallest or
      largest exponent is not changed), and zero otherwise.
 
-     For the subsequent operations, it is the user’s responsibility to
+     For the subsequent operations, it is the user's responsibility to
      check that any floating-point value used as an input is in the new
      exponent range (for example using ‘mpfr_check_range’).  If a
      floating-point value outside the new exponent range is used as an
@@ -3068,7 +3068,7 @@ this argument.  *Note Exceptions::.
  -- Function: mpfr_flags_t mpfr_flags_test (mpfr_flags_t MASK)
      Return the flags specified by MASK.  To test whether any flag from
      MASK is set, compare the return value to 0.  You can also test
-     individual flags by AND’ing the result with ‘MPFR_FLAGS_’ macros.
+     individual flags by AND'ing the result with ‘MPFR_FLAGS_’ macros.
      Example:
           mpfr_flags_t t = mpfr_flags_test (MPFR_FLAGS_UNDERFLOW|
                                             MPFR_FLAGS_OVERFLOW)
@@ -3417,7 +3417,7 @@ compatibility (this might change in future versions), using:
      #define GMP_RNDZ MPFR_RNDZ
      #define GMP_RNDU MPFR_RNDU
      #define GMP_RNDD MPFR_RNDD
-   The rounding mode “round away from zero” (‘MPFR_RNDA’) was added in
+   The rounding mode "round away from zero" (‘MPFR_RNDA’) was added in
 MPFR 3.0 (however no rounding mode ‘GMP_RNDA’ exists).  Faithful
 rounding (‘MPFR_RNDF’) was added in MPFR 4.0, but currently, it is
 partially supported.
@@ -3673,7 +3673,7 @@ against another MPFR version (older or newer), as described below.
 
    • ‘mpfr_out_str’ changed in MPFR 4.1.  The argument BASE can now be
      negative (from −2 to −36), in order to follow ‘mpfr_get_str’ and
-     GMP’s ‘mpf_out_str’ functions.
+     GMP's ‘mpf_out_str’ functions.
 
    • ‘mpfr_set_exp’ changed in MPFR 4.0.  Before MPFR 4.0, the exponent
      was set whatever the contents of the MPFR object in argument.  In
@@ -3716,7 +3716,7 @@ against another MPFR version (older or newer), as described below.
 
    • ‘mpfr_urandom’ and ‘mpfr_urandomb’ changed in MPFR 3.1.  Their
      behavior no longer depends on the platform (assuming this is also
-     true for GMP’s random generator, which is not the case between GMP
+     true for GMP's random generator, which is not the case between GMP
      4.1 and 4.2 if ‘gmp_randinit_default’ is used).  As a consequence,
      the returned values can be different between MPFR 3.1 and previous
      MPFR versions.  Note: as the reproducibility of these functions was
@@ -3952,7 +3952,7 @@ Appendix A GNU Free Documentation License
      author and publisher a way to get credit for their work, while not
      being considered responsible for modifications made by others.
 
-     This License is a kind of “copyleft”, which means that derivative
+     This License is a kind of "copyleft", which means that derivative
      works of the document must themselves be free in the same sense.
      It complements the GNU General Public License, which is a copyleft
      license designed for free software.
@@ -3973,18 +3973,18 @@ Appendix A GNU Free Documentation License
      be distributed under the terms of this License.  Such a notice
      grants a world-wide, royalty-free license, unlimited in duration,
      to use that work under the conditions stated herein.  The
-     “Document”, below, refers to any such manual or work.  Any member
-     of the public is a licensee, and is addressed as “you”.  You accept
+     "Document", below, refers to any such manual or work.  Any member
+     of the public is a licensee, and is addressed as "you".  You accept
      the license if you copy, modify or distribute the work in a way
      requiring permission under copyright law.
 
-     A “Modified Version” of the Document means any work containing the
+     A "Modified Version" of the Document means any work containing the
      Document or a portion of it, either copied verbatim, or with
      modifications and/or translated into another language.
 
-     A “Secondary Section” is a named appendix or a front-matter section
+     A "Secondary Section" is a named appendix or a front-matter section
      of the Document that deals exclusively with the relationship of the
-     publishers or authors of the Document to the Document’s overall
+     publishers or authors of the Document to the Document's overall
      subject (or to related matters) and contains nothing that could
      fall directly within that overall subject.  (Thus, if the Document
      is in part a textbook of mathematics, a Secondary Section may not
@@ -3993,7 +3993,7 @@ Appendix A GNU Free Documentation License
      of legal, commercial, philosophical, ethical or political position
      regarding them.
 
-     The “Invariant Sections” are certain Secondary Sections whose
+     The "Invariant Sections" are certain Secondary Sections whose
      titles are designated, as being those of Invariant Sections, in the
      notice that says that the Document is released under this License.
      If a section does not fit the above definition of Secondary then it
@@ -4001,13 +4001,13 @@ Appendix A GNU Free Documentation License
      contain zero Invariant Sections.  If the Document does not identify
      any Invariant Sections then there are none.
 
-     The “Cover Texts” are certain short passages of text that are
+     The "Cover Texts" are certain short passages of text that are
      listed, as Front-Cover Texts or Back-Cover Texts, in the notice
      that says that the Document is released under this License.  A
      Front-Cover Text may be at most 5 words, and a Back-Cover Text may
      be at most 25 words.
 
-     A “Transparent” copy of the Document means a machine-readable copy,
+     A "Transparent" copy of the Document means a machine-readable copy,
      represented in a format whose specification is available to the
      general public, that is suitable for revising the document
      straightforwardly with generic text editors or (for images composed
@@ -4019,7 +4019,7 @@ Appendix A GNU Free Documentation License
      been arranged to thwart or discourage subsequent modification by
      readers is not Transparent.  An image format is not Transparent if
      used for any substantial amount of text.  A copy that is not
-     “Transparent” is called “Opaque”.
+     "Transparent" is called "Opaque".
 
      Examples of suitable formats for Transparent copies include plain
      ASCII without markup, Texinfo input format, LaTeX input format,
@@ -4032,20 +4032,20 @@ Appendix A GNU Free Documentation License
      the machine-generated HTML, PostScript or PDF produced by some word
      processors for output purposes only.
 
-     The “Title Page” means, for a printed book, the title page itself,
+     The "Title Page" means, for a printed book, the title page itself,
      plus such following pages as are needed to hold, legibly, the
      material this License requires to appear in the title page.  For
-     works in formats which do not have any title page as such, “Title
-     Page” means the text near the most prominent appearance of the
-     work’s title, preceding the beginning of the body of the text.
+     works in formats which do not have any title page as such, "Title
+     Page" means the text near the most prominent appearance of the
+     work's title, preceding the beginning of the body of the text.
 
-     A section “Entitled XYZ” means a named subunit of the Document
+     A section "Entitled XYZ" means a named subunit of the Document
      whose title either is precisely XYZ or contains XYZ in parentheses
      following text that translates XYZ in another language.  (Here XYZ
      stands for a specific section name mentioned below, such as
-     “Acknowledgements”, “Dedications”, “Endorsements”, or “History”.)
-     To “Preserve the Title” of such a section when you modify the
-     Document means that it remains a section “Entitled XYZ” according
+     "Acknowledgements", "Dedications", "Endorsements", or "History".)
+     To "Preserve the Title" of such a section when you modify the
+     Document means that it remains a section "Entitled XYZ" according
      to this definition.
 
      The Document may include Warranty Disclaimers next to the notice
@@ -4075,7 +4075,7 @@ Appendix A GNU Free Documentation License
 
      If you publish printed copies (or copies in media that commonly
      have printed covers) of the Document, numbering more than 100, and
-     the Document’s license notice requires Cover Texts, you must
+     the Document's license notice requires Cover Texts, you must
      enclose the copies in covers that carry, clearly and legibly, all
      these Cover Texts: Front-Cover Texts on the front cover, and
      Back-Cover Texts on the back cover.  Both covers must also clearly
@@ -4147,15 +4147,15 @@ Appendix A GNU Free Documentation License
           the Addendum below.
 
        G. Preserve in that license notice the full lists of Invariant
-          Sections and required Cover Texts given in the Document’s
+          Sections and required Cover Texts given in the Document's
           license notice.
 
        H. Include an unaltered copy of this License.
 
-       I. Preserve the section Entitled “History”, Preserve its Title,
+       I. Preserve the section Entitled "History", Preserve its Title,
           and add to it an item stating at least the title, year, new
           authors, and publisher of the Modified Version as given on the
-          Title Page.  If there is no section Entitled “History” in the
+          Title Page.  If there is no section Entitled "History" in the
           Document, create one stating the title, year, authors, and
           publisher of the Document as given on its Title Page, then add
           an item describing the Modified Version as stated in the
@@ -4165,12 +4165,12 @@ Appendix A GNU Free Documentation License
           for public access to a Transparent copy of the Document, and
           likewise the network locations given in the Document for
           previous versions it was based on.  These may be placed in the
-          “History” section.  You may omit a network location for a work
+          "History" section.  You may omit a network location for a work
           that was published at least four years before the Document
           itself, or if the original publisher of the version it refers
           to gives permission.
 
-       K. For any section Entitled “Acknowledgements” or “Dedications”,
+       K. For any section Entitled "Acknowledgements" or "Dedications",
           Preserve the Title of the section, and preserve in the section
           all the substance and tone of each of the contributor
           acknowledgements and/or dedications given therein.
@@ -4179,11 +4179,11 @@ Appendix A GNU Free Documentation License
           in their text and in their titles.  Section numbers or the
           equivalent are not considered part of the section titles.
 
-       M. Delete any section Entitled “Endorsements”.  Such a section
+       M. Delete any section Entitled "Endorsements".  Such a section
           may not be included in the Modified Version.
 
        N. Do not retitle any existing section to be Entitled
-          “Endorsements” or to conflict in title with any Invariant
+          "Endorsements" or to conflict in title with any Invariant
           Section.
 
        O. Preserve any Warranty Disclaimers.
@@ -4192,15 +4192,15 @@ Appendix A GNU Free Documentation License
      appendices that qualify as Secondary Sections and contain no
      material copied from the Document, you may at your option designate
      some or all of these sections as invariant.  To do this, add their
-     titles to the list of Invariant Sections in the Modified Version’s
+     titles to the list of Invariant Sections in the Modified Version's
      license notice.  These titles must be distinct from any other
      section titles.
 
-     You may add a section Entitled “Endorsements”, provided it contains
+     You may add a section Entitled "Endorsements", provided it contains
      nothing but endorsements of your Modified Version by various
-     parties—for example, statements of peer review or that the text has
-     been approved by an organization as the authoritative definition of
-     a standard.
+     parties--for example, statements of peer review or that the text
+     has been approved by an organization as the authoritative
+     definition of a standard.
 
      You may add a passage of up to five words as a Front-Cover Text,
      and a passage of up to 25 words as a Back-Cover Text, to the end of
@@ -4238,10 +4238,10 @@ Appendix A GNU Free Documentation License
      combined work.
 
      In the combination, you must combine any sections Entitled
-     “History” in the various original documents, forming one section
-     Entitled “History”; likewise combine any sections Entitled
-     “Acknowledgements”, and any sections Entitled “Dedications”.  You
-     must delete all sections Entitled “Endorsements.”
+     "History" in the various original documents, forming one section
+     Entitled "History"; likewise combine any sections Entitled
+     "Acknowledgements", and any sections Entitled "Dedications".  You
+     must delete all sections Entitled "Endorsements."
 
   6. COLLECTIONS OF DOCUMENTS
 
@@ -4262,16 +4262,16 @@ Appendix A GNU Free Documentation License
 
      A compilation of the Document or its derivatives with other
      separate and independent documents or works, in or on a volume of a
-     storage or distribution medium, is called an “aggregate” if the
+     storage or distribution medium, is called an "aggregate" if the
      copyright resulting from the compilation is not used to limit the
-     legal rights of the compilation’s users beyond what the individual
+     legal rights of the compilation's users beyond what the individual
      works permit.  When the Document is included in an aggregate, this
      License does not apply to the other works in the aggregate which
      are not themselves derivative works of the Document.
 
      If the Cover Text requirement of section 3 is applicable to these
      copies of the Document, then if the Document is less than one half
-     of the entire aggregate, the Document’s Cover Texts may be placed
+     of the entire aggregate, the Document's Cover Texts may be placed
      on covers that bracket the Document within the aggregate, or the
      electronic equivalent of covers if the Document is in electronic
      form.  Otherwise they must appear on printed covers that bracket
@@ -4293,8 +4293,8 @@ Appendix A GNU Free Documentation License
      this License or a notice or disclaimer, the original version will
      prevail.
 
-     If a section in the Document is Entitled “Acknowledgements”,
-     “Dedications”, or “History”, the requirement (section 4) to
+     If a section in the Document is Entitled "Acknowledgements",
+     "Dedications", or "History", the requirement (section 4) to
      Preserve its Title (section 1) will typically require changing the
      actual title.
 
@@ -4318,7 +4318,7 @@ Appendix A GNU Free Documentation License
 
      Each version of the License is given a distinguishing version
      number.  If the Document specifies that a particular numbered
-     version of this License “or any later version” applies to it, you
+     version of this License "or any later version" applies to it, you
      have the option of following the terms and conditions either of
      that specified version or of any later version that has been
      published (not as a draft) by the Free Software Foundation.  If the
@@ -4342,7 +4342,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with...Texts.” line with this:
+Texts, replace the "with...Texts."  line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -4381,7 +4381,7 @@ Concept Index
 * Exception related functions:           Exception Related Functions.
                                                                (line  3)
 * Exponent:                              Nomenclature and Types.
-                                                               (line 41)
+                                                               (line 39)
 * Floating-point functions:              MPFR Interface.       (line  6)
 * Floating-point number:                 Nomenclature and Types.
                                                                (line  6)
@@ -4390,7 +4390,7 @@ Concept Index
 * GNU Free Documentation License <1>:    GNU Free Documentation License.
                                                                (line  6)
 * Group of flags:                        Nomenclature and Types.
-                                                               (line 52)
+                                                               (line 50)
 * I/O functions:                         Input and Output Functions.
                                                                (line  3)
 * I/O functions <1>:                     Formatted Output Functions.
@@ -4427,7 +4427,7 @@ Concept Index
 * Output functions <1>:                  Formatted Output Functions.
                                                                (line  3)
 * Precision:                             Nomenclature and Types.
-                                                               (line 27)
+                                                               (line 25)
 * Precision <1>:                         MPFR Interface.       (line 17)
 * Regular number:                        Nomenclature and Types.
                                                                (line  6)
@@ -4435,7 +4435,7 @@ Concept Index
                                                                (line  3)
 * Reporting bugs:                        Reporting Bugs.       (line  6)
 * Rounding:                              Nomenclature and Types.
-                                                               (line 47)
+                                                               (line 45)
 * Rounding mode related functions:       Rounding-Related Functions.
                                                                (line  3)
 * stdarg.h:                              Headers and Libraries.
@@ -4444,7 +4444,7 @@ Concept Index
                                                                (line 22)
 * stdio.h:                               Headers and Libraries.
                                                                (line 12)
-* Ternary value:                         Rounding.             (line 79)
+* Ternary value:                         Rounding.             (line 75)
 * Transcendental functions:              Transcendental Functions.
                                                                (line  3)
 * uintmax_t:                             Headers and Libraries.
@@ -4460,11 +4460,11 @@ Function and Type Index
 * Menu:
 
 * mpfr_abs:                              Arithmetic Functions.
-                                                              (line 144)
+                                                              (line 142)
 * mpfr_acos:                             Transcendental Functions.
-                                                              (line 120)
+                                                              (line 118)
 * mpfr_acosh:                            Transcendental Functions.
-                                                              (line 185)
+                                                              (line 182)
 * mpfr_add:                              Arithmetic Functions.
                                                               (line   6)
 * mpfr_add_d:                            Arithmetic Functions.
@@ -4478,23 +4478,23 @@ Function and Type Index
 * mpfr_add_z:                            Arithmetic Functions.
                                                               (line  14)
 * mpfr_agm:                              Transcendental Functions.
-                                                              (line 281)
+                                                              (line 278)
 * mpfr_ai:                               Transcendental Functions.
-                                                              (line 291)
+                                                              (line 288)
 * mpfr_asin:                             Transcendental Functions.
-                                                              (line 121)
+                                                              (line 119)
 * mpfr_asinh:                            Transcendental Functions.
-                                                              (line 186)
+                                                              (line 183)
 * mpfr_asprintf:                         Formatted Output Functions.
                                                               (line 199)
 * mpfr_atan:                             Transcendental Functions.
-                                                              (line 122)
+                                                              (line 120)
 * mpfr_atan2:                            Transcendental Functions.
-                                                              (line 132)
+                                                              (line 130)
 * mpfr_atanh:                            Transcendental Functions.
-                                                              (line 187)
+                                                              (line 184)
 * mpfr_beta:                             Transcendental Functions.
-                                                              (line 243)
+                                                              (line 240)
 * mpfr_buildopt_decimal_p:               Miscellaneous Functions.
                                                               (line 185)
 * mpfr_buildopt_float128_p:              Miscellaneous Functions.
@@ -4510,15 +4510,13 @@ Function and Type Index
 * mpfr_can_round:                        Rounding-Related Functions.
                                                               (line  40)
 * mpfr_cbrt:                             Arithmetic Functions.
-                                                              (line 116)
+                                                              (line 115)
 * mpfr_ceil:                             Integer and Remainder Related Functions.
                                                               (line   7)
 * mpfr_check_range:                      Exception Related Functions.
                                                               (line  50)
 * mpfr_clear:                            Initialization Functions.
                                                               (line  33)
-* mpfr_clears:                           Initialization Functions.
-                                                              (line  38)
 * mpfr_clear_divby0:                     Exception Related Functions.
                                                               (line 153)
 * mpfr_clear_erangeflag:                 Exception Related Functions.
@@ -4533,12 +4531,10 @@ Function and Type Index
                                                               (line 152)
 * mpfr_clear_underflow:                  Exception Related Functions.
                                                               (line 151)
+* mpfr_clears:                           Initialization Functions.
+                                                              (line  38)
 * mpfr_cmp:                              Comparison Functions.
                                                               (line   6)
-* mpfr_cmpabs:                           Comparison Functions.
-                                                              (line  34)
-* mpfr_cmpabs_ui:                        Comparison Functions.
-                                                              (line  35)
 * mpfr_cmp_d:                            Comparison Functions.
                                                               (line   9)
 * mpfr_cmp_f:                            Comparison Functions.
@@ -4557,28 +4553,32 @@ Function and Type Index
                                                               (line  27)
 * mpfr_cmp_z:                            Comparison Functions.
                                                               (line  11)
+* mpfr_cmpabs:                           Comparison Functions.
+                                                              (line  34)
+* mpfr_cmpabs_ui:                        Comparison Functions.
+                                                              (line  35)
 * mpfr_const_catalan:                    Transcendental Functions.
-                                                              (line 302)
-* mpfr_const_euler:                      Transcendental Functions.
-                                                              (line 301)
-* mpfr_const_log2:                       Transcendental Functions.
                                                               (line 299)
+* mpfr_const_euler:                      Transcendental Functions.
+                                                              (line 298)
+* mpfr_const_log2:                       Transcendental Functions.
+                                                              (line 296)
 * mpfr_const_pi:                         Transcendental Functions.
-                                                              (line 300)
+                                                              (line 297)
 * mpfr_copysign:                         Miscellaneous Functions.
                                                               (line 127)
 * mpfr_cos:                              Transcendental Functions.
-                                                              (line  98)
+                                                              (line  96)
 * mpfr_cosh:                             Transcendental Functions.
-                                                              (line 165)
+                                                              (line 162)
 * mpfr_cot:                              Transcendental Functions.
-                                                              (line 116)
+                                                              (line 114)
 * mpfr_coth:                             Transcendental Functions.
-                                                              (line 181)
+                                                              (line 178)
 * mpfr_csc:                              Transcendental Functions.
-                                                              (line 115)
+                                                              (line 113)
 * mpfr_csch:                             Transcendental Functions.
-                                                              (line 180)
+                                                              (line 177)
 * mpfr_custom_get_exp:                   Custom Interface.    (line  76)
 * mpfr_custom_get_kind:                  Custom Interface.    (line  66)
 * mpfr_custom_get_significand:           Custom Interface.    (line  71)
@@ -4586,22 +4586,24 @@ Function and Type Index
 * mpfr_custom_init:                      Custom Interface.    (line  41)
 * mpfr_custom_init_set:                  Custom Interface.    (line  48)
 * mpfr_custom_move:                      Custom Interface.    (line  85)
+* mpfr_d_div:                            Arithmetic Functions.
+                                                              (line  84)
+* mpfr_d_sub:                            Arithmetic Functions.
+                                                              (line  36)
 * MPFR_DECL_INIT:                        Initialization Functions.
                                                               (line  77)
 * mpfr_digamma:                          Transcendental Functions.
-                                                              (line 238)
+                                                              (line 235)
 * mpfr_dim:                              Arithmetic Functions.
-                                                              (line 156)
+                                                              (line 153)
 * mpfr_div:                              Arithmetic Functions.
                                                               (line  74)
-* mpfr_divby0_p:                         Exception Related Functions.
-                                                              (line 176)
 * mpfr_div_2exp:                         Compatibility with MPF.
                                                               (line  56)
 * mpfr_div_2si:                          Arithmetic Functions.
-                                                              (line 171)
+                                                              (line 168)
 * mpfr_div_2ui:                          Arithmetic Functions.
-                                                              (line 169)
+                                                              (line 166)
 * mpfr_div_d:                            Arithmetic Functions.
                                                               (line  86)
 * mpfr_div_q:                            Arithmetic Functions.
@@ -4612,16 +4614,14 @@ Function and Type Index
                                                               (line  78)
 * mpfr_div_z:                            Arithmetic Functions.
                                                               (line  88)
+* mpfr_divby0_p:                         Exception Related Functions.
+                                                              (line 176)
 * mpfr_dot:                              Arithmetic Functions.
-                                                              (line 228)
+                                                              (line 224)
 * mpfr_dump:                             Input and Output Functions.
                                                               (line  76)
-* mpfr_d_div:                            Arithmetic Functions.
-                                                              (line  84)
-* mpfr_d_sub:                            Arithmetic Functions.
-                                                              (line  36)
 * mpfr_eint:                             Transcendental Functions.
-                                                              (line 191)
+                                                              (line 188)
 * mpfr_eq:                               Compatibility with MPF.
                                                               (line  35)
 * mpfr_equal_p:                          Comparison Functions.
@@ -4631,21 +4631,21 @@ Function and Type Index
 * mpfr_erangeflag_p:                     Exception Related Functions.
                                                               (line 179)
 * mpfr_erf:                              Transcendental Functions.
-                                                              (line 255)
+                                                              (line 252)
 * mpfr_erfc:                             Transcendental Functions.
-                                                              (line 256)
+                                                              (line 253)
 * mpfr_exp:                              Transcendental Functions.
-                                                              (line  41)
-* mpfr_exp10:                            Transcendental Functions.
-                                                              (line  43)
-* mpfr_exp2:                             Transcendental Functions.
-                                                              (line  42)
-* mpfr_expm1:                            Transcendental Functions.
-                                                              (line  47)
+                                                              (line  40)
 * mpfr_exp_t:                            Nomenclature and Types.
+                                                              (line  39)
+* mpfr_exp10:                            Transcendental Functions.
+                                                              (line  42)
+* mpfr_exp2:                             Transcendental Functions.
                                                               (line  41)
+* mpfr_expm1:                            Transcendental Functions.
+                                                              (line  46)
 * mpfr_fac_ui:                           Arithmetic Functions.
-                                                              (line 177)
+                                                              (line 174)
 * mpfr_fits_intmax_p:                    Conversion Functions.
                                                               (line 185)
 * mpfr_fits_sint_p:                      Conversion Functions.
@@ -4654,10 +4654,10 @@ Function and Type Index
                                                               (line 179)
 * mpfr_fits_sshort_p:                    Conversion Functions.
                                                               (line 183)
-* mpfr_fits_uintmax_p:                   Conversion Functions.
-                                                              (line 184)
 * mpfr_fits_uint_p:                      Conversion Functions.
                                                               (line 180)
+* mpfr_fits_uintmax_p:                   Conversion Functions.
+                                                              (line 184)
 * mpfr_fits_ulong_p:                     Conversion Functions.
                                                               (line 178)
 * mpfr_fits_ushort_p:                    Conversion Functions.
@@ -4671,23 +4671,23 @@ Function and Type Index
 * mpfr_flags_set:                        Exception Related Functions.
                                                               (line 193)
 * mpfr_flags_t:                          Nomenclature and Types.
-                                                              (line  52)
+                                                              (line  50)
 * mpfr_flags_test:                       Exception Related Functions.
                                                               (line 196)
 * mpfr_floor:                            Integer and Remainder Related Functions.
                                                               (line   8)
 * mpfr_fma:                              Arithmetic Functions.
-                                                              (line 181)
+                                                              (line 178)
 * mpfr_fmma:                             Arithmetic Functions.
-                                                              (line 191)
+                                                              (line 188)
 * mpfr_fmms:                             Arithmetic Functions.
-                                                              (line 193)
+                                                              (line 190)
 * mpfr_fmod:                             Integer and Remainder Related Functions.
-                                                              (line 108)
+                                                              (line 106)
 * mpfr_fmodquo:                          Integer and Remainder Related Functions.
-                                                              (line 110)
+                                                              (line 108)
 * mpfr_fms:                              Arithmetic Functions.
-                                                              (line 183)
+                                                              (line 180)
 * mpfr_fpif_export:                      Input and Output Functions.
                                                               (line  51)
 * mpfr_fpif_import:                      Input and Output Functions.
@@ -4695,7 +4695,7 @@ Function and Type Index
 * mpfr_fprintf:                          Formatted Output Functions.
                                                               (line 163)
 * mpfr_frac:                             Integer and Remainder Related Functions.
-                                                              (line  91)
+                                                              (line  89)
 * mpfr_free_cache:                       Memory Handling Functions.
                                                               (line   9)
 * mpfr_free_cache2:                      Memory Handling Functions.
@@ -4707,11 +4707,13 @@ Function and Type Index
 * mpfr_frexp:                            Conversion Functions.
                                                               (line  52)
 * mpfr_gamma:                            Transcendental Functions.
-                                                              (line 206)
+                                                              (line 203)
 * mpfr_gamma_inc:                        Transcendental Functions.
-                                                              (line 207)
+                                                              (line 204)
 * mpfr_get_d:                            Conversion Functions.
                                                               (line   7)
+* mpfr_get_d_2exp:                       Conversion Functions.
+                                                              (line  39)
 * mpfr_get_decimal128:                   Conversion Functions.
                                                               (line  11)
 * mpfr_get_decimal64:                    Conversion Functions.
@@ -4720,8 +4722,6 @@ Function and Type Index
                                                               (line 115)
 * mpfr_get_default_rounding_mode:        Rounding-Related Functions.
                                                               (line  10)
-* mpfr_get_d_2exp:                       Conversion Functions.
-                                                              (line  39)
 * mpfr_get_emax:                         Exception Related Functions.
                                                               (line   7)
 * mpfr_get_emax_max:                     Exception Related Functions.
@@ -4772,24 +4772,18 @@ Function and Type Index
                                                               (line  61)
 * mpfr_grandom:                          Miscellaneous Functions.
                                                               (line  69)
-* mpfr_greaterequal_p:                   Comparison Functions.
-                                                              (line  57)
 * mpfr_greater_p:                        Comparison Functions.
                                                               (line  56)
+* mpfr_greaterequal_p:                   Comparison Functions.
+                                                              (line  57)
 * mpfr_hypot:                            Arithmetic Functions.
-                                                              (line 201)
+                                                              (line 198)
 * mpfr_inexflag_p:                       Exception Related Functions.
                                                               (line 178)
 * mpfr_inf_p:                            Comparison Functions.
                                                               (line  41)
 * mpfr_init:                             Initialization Functions.
                                                               (line  56)
-* mpfr_init2:                            Initialization Functions.
-                                                              (line  10)
-* mpfr_inits:                            Initialization Functions.
-                                                              (line  65)
-* mpfr_inits2:                           Initialization Functions.
-                                                              (line  25)
 * mpfr_init_set:                         Combined Initialization and Assignment Functions.
                                                               (line   6)
 * mpfr_init_set_d:                       Combined Initialization and Assignment Functions.
@@ -4808,38 +4802,44 @@ Function and Type Index
                                                               (line   7)
 * mpfr_init_set_z:                       Combined Initialization and Assignment Functions.
                                                               (line  14)
+* mpfr_init2:                            Initialization Functions.
+                                                              (line  10)
+* mpfr_inits:                            Initialization Functions.
+                                                              (line  65)
+* mpfr_inits2:                           Initialization Functions.
+                                                              (line  25)
 * mpfr_inp_str:                          Input and Output Functions.
                                                               (line  39)
 * mpfr_integer_p:                        Integer and Remainder Related Functions.
-                                                              (line 137)
+                                                              (line 135)
 * mpfr_j0:                               Transcendental Functions.
-                                                              (line 260)
+                                                              (line 257)
 * mpfr_j1:                               Transcendental Functions.
-                                                              (line 261)
+                                                              (line 258)
 * mpfr_jn:                               Transcendental Functions.
-                                                              (line 262)
+                                                              (line 259)
+* mpfr_less_p:                           Comparison Functions.
+                                                              (line  58)
 * mpfr_lessequal_p:                      Comparison Functions.
                                                               (line  59)
 * mpfr_lessgreater_p:                    Comparison Functions.
                                                               (line  65)
-* mpfr_less_p:                           Comparison Functions.
-                                                              (line  58)
 * mpfr_lgamma:                           Transcendental Functions.
-                                                              (line 228)
+                                                              (line 225)
 * mpfr_li2:                              Transcendental Functions.
-                                                              (line 201)
+                                                              (line 198)
 * mpfr_lngamma:                          Transcendental Functions.
-                                                              (line 220)
+                                                              (line 217)
 * mpfr_log:                              Transcendental Functions.
                                                               (line  25)
+* mpfr_log_ui:                           Transcendental Functions.
+                                                              (line  26)
 * mpfr_log10:                            Transcendental Functions.
                                                               (line  29)
 * mpfr_log1p:                            Transcendental Functions.
-                                                              (line  37)
+                                                              (line  36)
 * mpfr_log2:                             Transcendental Functions.
                                                               (line  28)
-* mpfr_log_ui:                           Transcendental Functions.
-                                                              (line  26)
 * mpfr_max:                              Miscellaneous Functions.
                                                               (line  22)
 * mpfr_min:                              Miscellaneous Functions.
@@ -4847,7 +4847,7 @@ Function and Type Index
 * mpfr_min_prec:                         Rounding-Related Functions.
                                                               (line  85)
 * mpfr_modf:                             Integer and Remainder Related Functions.
-                                                              (line  98)
+                                                              (line  96)
 * mpfr_mp_memory_cleanup:                Memory Handling Functions.
                                                               (line  35)
 * mpfr_mul:                              Arithmetic Functions.
@@ -4855,9 +4855,9 @@ Function and Type Index
 * mpfr_mul_2exp:                         Compatibility with MPF.
                                                               (line  54)
 * mpfr_mul_2si:                          Arithmetic Functions.
-                                                              (line 164)
+                                                              (line 161)
 * mpfr_mul_2ui:                          Arithmetic Functions.
-                                                              (line 162)
+                                                              (line 159)
 * mpfr_mul_d:                            Arithmetic Functions.
                                                               (line  59)
 * mpfr_mul_q:                            Arithmetic Functions.
@@ -4868,12 +4868,12 @@ Function and Type Index
                                                               (line  55)
 * mpfr_mul_z:                            Arithmetic Functions.
                                                               (line  61)
-* mpfr_nanflag_p:                        Exception Related Functions.
-                                                              (line 177)
 * mpfr_nan_p:                            Comparison Functions.
                                                               (line  40)
+* mpfr_nanflag_p:                        Exception Related Functions.
+                                                              (line 177)
 * mpfr_neg:                              Arithmetic Functions.
-                                                              (line 143)
+                                                              (line 141)
 * mpfr_nextabove:                        Miscellaneous Functions.
                                                               (line  15)
 * mpfr_nextbelow:                        Miscellaneous Functions.
@@ -4889,21 +4889,21 @@ Function and Type Index
 * mpfr_overflow_p:                       Exception Related Functions.
                                                               (line 175)
 * mpfr_pow:                              Transcendental Functions.
-                                                              (line  51)
+                                                              (line  50)
 * mpfr_pow_si:                           Transcendental Functions.
-                                                              (line  55)
+                                                              (line  54)
 * mpfr_pow_ui:                           Transcendental Functions.
-                                                              (line  53)
+                                                              (line  52)
 * mpfr_pow_z:                            Transcendental Functions.
-                                                              (line  57)
+                                                              (line  56)
 * mpfr_prec_round:                       Rounding-Related Functions.
                                                               (line  13)
 * mpfr_prec_t:                           Nomenclature and Types.
-                                                              (line  27)
-* mpfr_printf:                           Formatted Output Functions.
-                                                              (line 170)
+                                                              (line  25)
 * mpfr_print_rnd_mode:                   Rounding-Related Functions.
                                                               (line  89)
+* mpfr_printf:                           Formatted Output Functions.
+                                                              (line 170)
 * mpfr_ptr:                              Nomenclature and Types.
                                                               (line   6)
 * mpfr_rec_sqrt:                         Arithmetic Functions.
@@ -4913,41 +4913,39 @@ Function and Type Index
 * mpfr_reldiff:                          Compatibility with MPF.
                                                               (line  46)
 * mpfr_remainder:                        Integer and Remainder Related Functions.
-                                                              (line 112)
+                                                              (line 110)
 * mpfr_remquo:                           Integer and Remainder Related Functions.
-                                                              (line 114)
+                                                              (line 112)
 * mpfr_rint:                             Integer and Remainder Related Functions.
                                                               (line   6)
 * mpfr_rint_ceil:                        Integer and Remainder Related Functions.
-                                                              (line  54)
+                                                              (line  52)
 * mpfr_rint_floor:                       Integer and Remainder Related Functions.
-                                                              (line  55)
+                                                              (line  53)
 * mpfr_rint_round:                       Integer and Remainder Related Functions.
-                                                              (line  57)
+                                                              (line  55)
 * mpfr_rint_roundeven:                   Integer and Remainder Related Functions.
-                                                              (line  59)
+                                                              (line  57)
 * mpfr_rint_trunc:                       Integer and Remainder Related Functions.
-                                                              (line  61)
+                                                              (line  59)
 * mpfr_rnd_t:                            Nomenclature and Types.
-                                                              (line  47)
+                                                              (line  45)
 * mpfr_root:                             Arithmetic Functions.
-                                                              (line 132)
+                                                              (line 130)
 * mpfr_rootn_ui:                         Arithmetic Functions.
-                                                              (line 117)
+                                                              (line 116)
 * mpfr_round:                            Integer and Remainder Related Functions.
                                                               (line   9)
-* mpfr_roundeven:                        Integer and Remainder Related Functions.
-                                                              (line  10)
 * mpfr_round_nearest_away:               Rounding-Related Functions.
                                                               (line  95)
+* mpfr_roundeven:                        Integer and Remainder Related Functions.
+                                                              (line  10)
 * mpfr_sec:                              Transcendental Functions.
-                                                              (line 114)
+                                                              (line 112)
 * mpfr_sech:                             Transcendental Functions.
-                                                              (line 179)
+                                                              (line 176)
 * mpfr_set:                              Assignment Functions.
                                                               (line   9)
-* mpfr_setsign:                          Miscellaneous Functions.
-                                                              (line 121)
 * mpfr_set_d:                            Assignment Functions.
                                                               (line  16)
 * mpfr_set_decimal128:                   Assignment Functions.
@@ -4977,11 +4975,11 @@ Function and Type Index
 * mpfr_set_inexflag:                     Exception Related Functions.
                                                               (line 169)
 * mpfr_set_inf:                          Assignment Functions.
-                                                              (line 157)
+                                                              (line 156)
 * mpfr_set_ld:                           Assignment Functions.
                                                               (line  17)
 * mpfr_set_nan:                          Assignment Functions.
-                                                              (line 156)
+                                                              (line 155)
 * mpfr_set_nanflag:                      Exception Related Functions.
                                                               (line 168)
 * mpfr_set_overflow:                     Exception Related Functions.
@@ -4995,45 +4993,47 @@ Function and Type Index
 * mpfr_set_si:                           Assignment Functions.
                                                               (line  12)
 * mpfr_set_si_2exp:                      Assignment Functions.
-                                                              (line  64)
+                                                              (line  63)
 * mpfr_set_sj:                           Assignment Functions.
                                                               (line  14)
 * mpfr_set_sj_2exp:                      Assignment Functions.
-                                                              (line  68)
+                                                              (line  67)
 * mpfr_set_str:                          Assignment Functions.
-                                                              (line  76)
+                                                              (line  75)
 * mpfr_set_ui:                           Assignment Functions.
                                                               (line  10)
 * mpfr_set_ui_2exp:                      Assignment Functions.
-                                                              (line  62)
+                                                              (line  61)
 * mpfr_set_uj:                           Assignment Functions.
                                                               (line  13)
 * mpfr_set_uj_2exp:                      Assignment Functions.
-                                                              (line  66)
+                                                              (line  65)
 * mpfr_set_underflow:                    Exception Related Functions.
                                                               (line 165)
 * mpfr_set_z:                            Assignment Functions.
                                                               (line  25)
-* mpfr_set_zero:                         Assignment Functions.
-                                                              (line 158)
 * mpfr_set_z_2exp:                       Assignment Functions.
-                                                              (line  70)
+                                                              (line  69)
+* mpfr_set_zero:                         Assignment Functions.
+                                                              (line 157)
+* mpfr_setsign:                          Miscellaneous Functions.
+                                                              (line 121)
 * mpfr_sgn:                              Comparison Functions.
                                                               (line  50)
-* mpfr_signbit:                          Miscellaneous Functions.
-                                                              (line 117)
-* mpfr_sin:                              Transcendental Functions.
-                                                              (line  99)
-* mpfr_sinh:                             Transcendental Functions.
-                                                              (line 166)
-* mpfr_sinh_cosh:                        Transcendental Functions.
-                                                              (line 171)
-* mpfr_sin_cos:                          Transcendental Functions.
-                                                              (line 104)
 * mpfr_si_div:                           Arithmetic Functions.
                                                               (line  80)
 * mpfr_si_sub:                           Arithmetic Functions.
                                                               (line  32)
+* mpfr_signbit:                          Miscellaneous Functions.
+                                                              (line 117)
+* mpfr_sin:                              Transcendental Functions.
+                                                              (line  97)
+* mpfr_sin_cos:                          Transcendental Functions.
+                                                              (line 102)
+* mpfr_sinh:                             Transcendental Functions.
+                                                              (line 163)
+* mpfr_sinh_cosh:                        Transcendental Functions.
+                                                              (line 168)
 * mpfr_snprintf:                         Formatted Output Functions.
                                                               (line 186)
 * mpfr_sprintf:                          Formatted Output Functions.
@@ -5045,11 +5045,9 @@ Function and Type Index
 * mpfr_sqrt_ui:                          Arithmetic Functions.
                                                               (line 101)
 * mpfr_strtofr:                          Assignment Functions.
-                                                              (line  94)
+                                                              (line  93)
 * mpfr_sub:                              Arithmetic Functions.
                                                               (line  26)
-* mpfr_subnormalize:                     Exception Related Functions.
-                                                              (line  73)
 * mpfr_sub_d:                            Arithmetic Functions.
                                                               (line  38)
 * mpfr_sub_q:                            Arithmetic Functions.
@@ -5060,16 +5058,18 @@ Function and Type Index
                                                               (line  30)
 * mpfr_sub_z:                            Arithmetic Functions.
                                                               (line  42)
+* mpfr_subnormalize:                     Exception Related Functions.
+                                                              (line  73)
 * mpfr_sum:                              Arithmetic Functions.
-                                                              (line 211)
+                                                              (line 207)
 * mpfr_swap:                             Assignment Functions.
-                                                              (line 164)
+                                                              (line 163)
 * mpfr_t:                                Nomenclature and Types.
                                                               (line   6)
 * mpfr_tan:                              Transcendental Functions.
-                                                              (line 100)
+                                                              (line  98)
 * mpfr_tanh:                             Transcendental Functions.
-                                                              (line 167)
+                                                              (line 164)
 * mpfr_total_order_p:                    Comparison Functions.
                                                               (line  74)
 * mpfr_trunc:                            Integer and Remainder Related Functions.
@@ -5077,9 +5077,9 @@ Function and Type Index
 * mpfr_ui_div:                           Arithmetic Functions.
                                                               (line  76)
 * mpfr_ui_pow:                           Transcendental Functions.
-                                                              (line  61)
+                                                              (line  60)
 * mpfr_ui_pow_ui:                        Transcendental Functions.
-                                                              (line  59)
+                                                              (line  58)
 * mpfr_ui_sub:                           Arithmetic Functions.
                                                               (line  28)
 * mpfr_underflow_p:                      Exception Related Functions.
@@ -5113,71 +5113,71 @@ Function and Type Index
 * mpfr_vsprintf:                         Formatted Output Functions.
                                                               (line 177)
 * mpfr_y0:                               Transcendental Functions.
-                                                              (line 271)
+                                                              (line 268)
 * mpfr_y1:                               Transcendental Functions.
-                                                              (line 272)
+                                                              (line 269)
 * mpfr_yn:                               Transcendental Functions.
-                                                              (line 273)
+                                                              (line 270)
+* mpfr_z_sub:                            Arithmetic Functions.
+                                                              (line  40)
 * mpfr_zero_p:                           Comparison Functions.
                                                               (line  43)
 * mpfr_zeta:                             Transcendental Functions.
-                                                              (line 249)
+                                                              (line 246)
 * mpfr_zeta_ui:                          Transcendental Functions.
-                                                              (line 250)
-* mpfr_z_sub:                            Arithmetic Functions.
-                                                              (line  40)
+                                                              (line 247)
 
 
 
 Tag Table:
-Node: Top775
-Node: Copying2042
-Node: Introduction to MPFR3805
-Node: Installing MPFR6208
-Node: Reporting Bugs11668
-Node: MPFR Basics13700
-Node: Headers and Libraries14054
-Node: Nomenclature and Types17650
-Node: MPFR Variable Conventions20588
-Node: Rounding22124
-Ref: ternary value25941
-Node: Floating-Point Values on Special Numbers27932
-Node: Exceptions31181
-Node: Memory Handling35009
-Node: Getting the Best Efficiency Out of MPFR38760
-Node: MPFR Interface39672
-Node: Initialization Functions41989
-Node: Assignment Functions49518
-Node: Combined Initialization and Assignment Functions59660
-Node: Conversion Functions60961
-Ref: mpfr_get_str_ndigits66837
-Ref: mpfr_get_str67460
-Node: Arithmetic Functions72417
-Node: Comparison Functions84490
-Node: Transcendental Functions88781
-Ref: mpfr_pow91426
-Node: Input and Output Functions105400
-Node: Formatted Output Functions110698
-Node: Integer and Remainder Related Functions121040
-Node: Rounding-Related Functions128568
-Node: Miscellaneous Functions135170
-Node: Exception Related Functions145661
-Node: Memory Handling Functions155904
-Node: Compatibility with MPF157792
-Node: Custom Interface160961
-Node: Internals165592
-Node: API Compatibility167136
-Node: Type and Macro Changes169084
-Node: Added Functions172267
-Node: Changed Functions177074
-Node: Removed Functions184433
-Node: Other Changes185163
-Node: MPFR and the IEEE 754 Standard186864
-Node: Contributors189481
-Node: References192620
-Node: GNU Free Documentation License194501
-Node: Concept Index217095
-Node: Function and Type Index223168
+Node: Top777
+Node: Copying2044
+Node: Introduction to MPFR3807
+Node: Installing MPFR6210
+Node: Reporting Bugs11662
+Node: MPFR Basics13694
+Node: Headers and Libraries14048
+Node: Nomenclature and Types17644
+Node: MPFR Variable Conventions20582
+Node: Rounding22118
+Ref: ternary value25935
+Node: Floating-Point Values on Special Numbers27926
+Node: Exceptions31171
+Node: Memory Handling34997
+Node: Getting the Best Efficiency Out of MPFR38748
+Node: MPFR Interface39658
+Node: Initialization Functions41971
+Node: Assignment Functions49500
+Node: Combined Initialization and Assignment Functions59642
+Node: Conversion Functions60943
+Ref: mpfr_get_str_ndigits66819
+Ref: mpfr_get_str67442
+Node: Arithmetic Functions72397
+Node: Comparison Functions84470
+Node: Transcendental Functions88761
+Ref: mpfr_pow91404
+Node: Input and Output Functions105372
+Node: Formatted Output Functions110670
+Node: Integer and Remainder Related Functions121012
+Node: Rounding-Related Functions128540
+Node: Miscellaneous Functions135140
+Node: Exception Related Functions145631
+Node: Memory Handling Functions155870
+Node: Compatibility with MPF157758
+Node: Custom Interface160927
+Node: Internals165558
+Node: API Compatibility167102
+Node: Type and Macro Changes169050
+Node: Added Functions172229
+Node: Changed Functions177036
+Node: Removed Functions184391
+Node: Other Changes185121
+Node: MPFR and the IEEE 754 Standard186822
+Node: Contributors189439
+Node: References192578
+Node: GNU Free Documentation License194459
+Node: Concept Index216887
+Node: Function and Type Index222960
 
 End Tag Table
 
